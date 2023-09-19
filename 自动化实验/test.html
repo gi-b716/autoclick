@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+        var time = 10
+        var fintime;
+        function countleft() {
+            var btn = document.getElementById("getReg");
+            if(btn){//如果网速比较慢，定时器开始运行的时候网页还没有加载出来
+                if(time<=0){
+                    btn.value = "抢票";
+                    btn.disabled = false;
+                    clearInterval(fintime);//计时结束后就停止倒数计时
+                } else {
+                    btn.value = "距离抢票开始（还剩" + time + "秒）";
+                    time--;
+                }
+            }
+        }
+        fintime=setInterval("countleft()",1000);
+
+        function displayText() {
+            document.getElementById("success").innerHTML = "Success！";
+        }
+    </script>
+</head>
+<body>
+    <input type="button" id="getReg" disabled="disabled" value="等待抢票倒计时开始..." style="width:300px;height:50px;" onclick="displayText()"/>
+    <div id="success"></div>
+</body>
+</html>
